@@ -37,13 +37,13 @@ const ListExamsPage = () => {
               className="border p-4 rounded-md bg-[#e0fbfc] flex justify-between items-center"
             >
               <div>
-                <span className="text-black text-2xl cursor-pointer text-1xl font-semibold">
+                <span className="text-black  cursor-pointer text-md font-semibold">
                   {exam.title}
                 </span>
               </div>
               <div>
                 <Link href={`/exams/${exam.id}`}>
-                  <button className="p-2 bg-gray-800 text-white border rounded-md text-md">
+                  <button className="p-2 bg-gray-800 text-white border rounded-md text-sm">
                     View Exam
                   </button>
                 </Link>
