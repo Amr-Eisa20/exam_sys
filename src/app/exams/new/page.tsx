@@ -1,7 +1,12 @@
-interface IProps {}
+import React from "react";
+import ExamForm from "@/components/Exam/ExamForm";
 
-const NewExamPage = ({}: IProps) => {
-  return <div>Alert</div>;
+const NewExamPage = () => {
+  return (
+    <div className="container">
+      <ExamForm />
+    </div>
+  );
 };
 
 export default NewExamPage;
