@@ -12,7 +12,6 @@ export const getExams = (): Exam[] => {
 
 export const saveExam = (exam: Exam) => {
   const exams = getExams();
-  console.log("sss", exams);
   const index = exams.findIndex((e) => e.id === exam.id);
   if (index > -1) {
     exams[index] = exam;

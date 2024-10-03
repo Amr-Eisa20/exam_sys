@@ -40,9 +40,6 @@ const ListExamsPage = () => {
                 <span className="text-black text-2xl cursor-pointer text-1xl font-semibold">
                   {exam.title}
                 </span>
-                <span className="text-gray-600 block">
-                  {exam.description == "" ? "No description" : exam.description}
-                </span>
               </div>
               <div>
                 <Link href={`/exams/${exam.id}`}>
