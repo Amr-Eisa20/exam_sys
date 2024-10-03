@@ -1,33 +1,17 @@
 "use client";
-
 import React from "react";
-import {
-  Control,
-  Controller,
-  useWatch,
-  UseFormSetValue,
-} from "react-hook-form";
-import { Exam } from "@/interface";
+import { Controller, useWatch, useFormContext } from "react-hook-form";
+import { AnswerFormProps, Exam } from "@/interface";
 import Input from "../Ui/Input";
 import Textarea from "../Ui/Textarea";
 
-interface AnswerFormProps {
-  control: Control<Exam>;
-  setValue: UseFormSetValue<Exam>;
-  questionIndex: number;
-  answerIndex: number;
-  removeAnswer: (index: number) => void;
-  answerFields: any[];
-}
-
 const AnswerForm: React.FC<AnswerFormProps> = ({
-  control,
-  setValue,
   questionIndex,
   answerIndex,
   removeAnswer,
-  answerFields,
 }) => {
+  const { control, setValue } = useFormContext<Exam>();
+
   const answers = useWatch({
     control,
     name: `questions.${questionIndex}.answers`,
@@ -68,10 +52,10 @@ const AnswerForm: React.FC<AnswerFormProps> = ({
 
       {/* Is Correct Radio Button */}
       <div className="flex justify-between items-center my-2">
-        <div>
+        <div className="flex items-center">
           <input
             type="radio"
-            checked={answers[answerIndex]?.isCorrect || false}
+            checked={answers?.[answerIndex]?.isCorrect || false}
             onChange={() => handleIsCorrectChange(answerIndex)}
             className="text-blue-500 focus:ring-blue-300 focus:ring-1 focus:outline-none rounded-md"
           />

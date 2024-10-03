@@ -1,22 +1,18 @@
+"use client";
 import React from "react";
-import { useFieldArray, Control, Controller } from "react-hook-form";
+import { useFieldArray, useFormContext, Controller } from "react-hook-form";
 import AnswerForm from "./AnswerForm";
 import { v4 as uuidv4 } from "uuid";
-import { Exam } from "@/interface";
+import { Exam, QuestionFormProps } from "@/interface";
 import Input from "../Ui/Input";
 import Textarea from "../Ui/Textarea";
 
-interface QuestionFormProps {
-  control: Control<Exam>;
-  questionIndex: number;
-  removeQuestion: (index: number) => void;
-}
-
 const QuestionForm: React.FC<QuestionFormProps> = ({
-  control,
   questionIndex,
   removeQuestion,
 }) => {
+  const { control } = useFormContext<Exam>();
+
   const {
     fields: answerFields,
     append: appendAnswer,
@@ -55,11 +51,9 @@ const QuestionForm: React.FC<QuestionFormProps> = ({
         {answerFields.map((field, index) => (
           <AnswerForm
             key={field.id}
-            control={control}
             questionIndex={questionIndex}
             answerIndex={index}
             removeAnswer={removeAnswer}
-            answerFields={answerFields}
           />
         ))}
         <button
@@ -68,6 +62,7 @@ const QuestionForm: React.FC<QuestionFormProps> = ({
             appendAnswer({
               id: uuidv4(),
               title: "",
+              description: "",
               isCorrect: false,
             })
           }
@@ -78,7 +73,7 @@ const QuestionForm: React.FC<QuestionFormProps> = ({
       </div>
 
       {/* Remove Question */}
-      <div className="flex items-center text-center justify-center">
+      <div className="flex items-center justify-center">
         <button
           type="button"
           onClick={() => removeQuestion(questionIndex)}

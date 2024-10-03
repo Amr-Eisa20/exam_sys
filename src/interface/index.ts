@@ -18,3 +18,14 @@ export interface Exam {
   questions: Question[];
   description?: string;
 }
+
+export interface AnswerFormProps {
+  questionIndex: number;
+  answerIndex: number;
+  removeAnswer: (index: number) => void;
+}
+
+export interface QuestionFormProps {
+  questionIndex: number;
+  removeQuestion: (index: number) => void;
+}

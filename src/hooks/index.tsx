@@ -2,10 +2,12 @@ import { useForm, useFieldArray } from "react-hook-form";
 import { Exam } from "@/interface";
 
 export const useExamForm = (defaultValues?: Exam) => {
-  const { control, handleSubmit, formState } = useForm<Exam>({
+  const methods = useForm<Exam>({
     defaultValues,
     mode: "onChange",
   });
+
+  const { control } = methods;
 
   const {
     fields: questionFields,
@@ -17,9 +19,7 @@ export const useExamForm = (defaultValues?: Exam) => {
   });
 
   return {
-    control,
-    handleSubmit,
-    formState,
+    ...methods,
     questionFields,
     appendQuestion,
     removeQuestion,
